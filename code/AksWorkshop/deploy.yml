@@ -1,0 +1,37 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aksworkshop-deployment
+  labels:
+    app: aksworkshop
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: aksworkshop
+      labels:
+        app: aksworkshop
+    spec:
+      containers:
+      - name: aksworkshop
+        image: kvkkubeacr.azurecr.io/aksworkshop:v1
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: aksworkshop
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: aksworkshop-service
+spec:
+  selector:
+    app: aksworkshop
+  ports:
+    - port: 80
+  type: LoadBalancer
+  
+  

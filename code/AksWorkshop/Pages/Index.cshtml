@@ -1,0 +1,27 @@
+﻿@page
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <title>AKS Workshop 2019</title>
+</head>
+<body style="margin: 15px; background-color: #FFFFFF">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome, AKS Workshop!</h1>
+        <p class="lead"><b>@Environment.MachineName</b> is the container name that the application is running on.</p>
+        <hr class="my-4">
+        <p>Go ahead and learn more about Azure Kubernetes Service by following the link below.</p>
+        <a class="btn btn-primary btn-lg" href="https://docs.microsoft.com/en-us/azure/aks/" target="_blank" role="button">Learn more</a>
+    </div>
+</body>
+</html>
