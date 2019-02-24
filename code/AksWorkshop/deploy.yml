@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: aksworkshop
-        image: kvkkubeacr.azurecr.io/aksworkshop:v1
+        image: <your-acr-name>.azurecr.io/aksworkshop:v1
         imagePullPolicy: IfNotPresent
       restartPolicy: Always
   selector:
