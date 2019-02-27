@@ -3,9 +3,8 @@ Security for AKS Hands-On Session Guidelines for AKS Workshop 2019. Make sure yo
 
 # Content of the Hands-On Session
 
-* [Using Azure Files for AKS Data Volumes](https://github.com/kasunkv/aks-workshop-data-volumes-for-aks/blob/master/guidelines/using-azure-files-for-aks-data-volumes.md)
-* [Using Azure Disks for AKS Data Volumes](hhttps://github.com/kasunkv/aks-workshop-data-volumes-for-aks/blob/master/guidelines/using-azure-disks-for-aks-data-volumes.md)
-
+* [Authenticating Your AKS with ACR to Pulldown Images](https://github.com/kasunkv/aks-workshop-security-for-aks/blob/master/guidelines/authenticating-with-acr.md)
+* [Role-Based Access Control (RBAC) for AKS](https://github.com/kasunkv/aks-workshop-security-for-aks/blob/master/guidelines/rbac-for-aks.md)
 
 > ### Note:
 > Make sure you have read and completed the **Prerequisites** section to install and configure the tools needed to follow along in the hands-on session. The prerequisites can be found below.
@@ -65,3 +64,6 @@ docker pull kasunkv/aks-security-demo
 ```
 
 After that you can tag the image for the ACR and push it to Azure
+
+# Using Azure Cloud Shell
+If anything goes wrong with your local development environment when you try to use Azure CLI or kubectl commands, you can use the Azure Cloud Shell to execute the same commands and follow along.
