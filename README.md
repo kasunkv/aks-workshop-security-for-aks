@@ -33,7 +33,7 @@ az --version
 az login --use-device-code
 ```
 
-## 3. Kubectl - Kubernetes Command-Line Client
+## 3. kubectl - Kubernetes Command-Line Client
 You need to install `kubectl` on your local machine to manage your Kubernetes cluster on AKS. It's really simple. Once you have Azure CLI installed run the following command.
 
 ```bash
@@ -60,5 +60,8 @@ kubectl get nodes
 If you don't want to build the docker image used for the hands-on session. You can download the pre-made docker image from the Docker Hub. Use the following command to download the docker image to your local machine.
 
 ```bash
-
+# Pull the kasunkv/aks-security-demo image from docker hub
+docker pull kasunkv/aks-security-demo
 ```
+
+After that you can tag the image for the ACR and push it to Azure

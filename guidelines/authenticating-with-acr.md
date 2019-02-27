@@ -2,7 +2,7 @@
 
 
 ## 1. Login to Azure Subscription with Azure CLI
-```bash
+```powershell
 az login --use-device-code
 
 # If you want to swtich subscriptions use the following command.
@@ -10,19 +10,19 @@ az acount set -s "<subscription-id>"
 ```
 
 ## 2. Create a Resource Group for the Resources
-```bash
+```powershell
 az group create --name "aks-security-rg" --location "southeastasia"
 ```
 
 ## 3. Create the Azure Container Registry to push our Docker Images
-```bash
+```powershell
 az acr create --name "<registry-name>" --resource-group "aks-security-rg" --location "southeastasia" --sku basic
 ```
 
 ## 4. Create the Azure Kubernetes Service to Run the Containers
 
 ### a). Create the Service Principle for AKS
-```bash
+```powershell
 az ad sp create-for-rbac --name "sp-aks-security" --skip-assignment
 
 # this will give a json object containing the appId and the password. Make note of these 2 values
@@ -30,30 +30,37 @@ az ad sp create-for-rbac --name "sp-aks-security" --skip-assignment
 ```
 
 ### b). Create the Azure Kubernetes Service
-```bash
+```powershell
 az aks create --name "<aks-name>" --resource-group "aks-security-rg" --node-count 1 --generate-ssh-keys  --service-principal "<sp-app-id>" --client-secret "<sp-app-password>"
 ```
 
 ## 5. Create the Docker Image of the Application
-```bash
-docker build --file .\Dockerfile --tag aksworkshop:v1 .
+```powershell
+docker build --file .\Dockerfile --tag aks-security-demo .
+```
+
+### Optional
+You can run the docker container locally and test the application. Use the following command
+
+```powershell
+docker run -p 5001:80 aks-security-demo
 ```
 
 ## 6. Push Docker Image to Azure Container Registry
 
 ### a). Tag the Docker Image with the ACS url
-```bash 
-docker tag "aksworkshop:v1" "<your-acr-url>/aksworkshop:v1"
+```powershell 
+docker tag "aks-security-demo" "<your-acr-name>.azurecr.io/aks-security-demo"
 ```
 
 ### b). Login to ACR
-```bash
+```powershell
 az acr login --name "<registry-name>"
 ```
 
 ### c). Push the newly tagged docker image to ACR
-```bash
-docker push "<your-acr-url>/aksworkshop:v1"
+```powershell
+docker push "<your-acr-url>/aks-security-demo"
 ```
 
 ## 7. Create a Deployment on AKS using a YAML File
@@ -64,12 +71,12 @@ In the `deploy.yml` file find the containers section and update the `image` prop
 ```yaml
 containers:
 - name: aksworkshop
-  image: "<your-acr-url>/aksworkshop:v1"
+  image: "<your-acr-url>/aks-security-demo"
   imagePullPolicy: IfNotPresent
 ```
 
 ### b). Merge Credentials for AKS with your local Kubernetes Config
-```bash
+```powershell
 # View available Kubetnetes Contexts
 kubectl config get-contexts
 
@@ -81,7 +88,7 @@ kubectl config get-contexts
 ```
 
 ### c). Create the Kubernetes Deployment using YAML file
-```bash
+```powershell
 kubectl create --filename .\deploy.yml
 
 # Check the deployment 
@@ -97,7 +104,7 @@ kubectl get pods --watch
 ## 8. Authenticate with ACR to Give Access for AKS to Pull Docker Images
 
 ### a). Get a referece to the ACR resource ID
-```bash 
+```powershell 
 # Switch to powershell
 powershell
 
@@ -109,6 +116,6 @@ $acrId = az acr show --name "<acr-name>" --resource-group "aks-security-rg" --qu
 ```
 
 ### b). Assign a role to the Service Principle only to Read Images from ACR
-```bash
+```powershell
 az role assignment create --assignee "http://sp-aks-security" --role acrpull --scope $acrId
 ```
