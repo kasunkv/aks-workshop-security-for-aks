@@ -2,6 +2,8 @@
 
 
 ## 1. Login to Azure Subscription with Azure CLI
+---
+
 ```powershell
 az login --use-device-code
 
@@ -9,32 +11,16 @@ az login --use-device-code
 az acount set -s "<subscription-id>"
 ```
 
-## 2. Create a Resource Group for the Resources
-```powershell
-az group create --name "aks-security-rg" --location "southeastasia"
-```
+## 2. Create the Azure Container Registry to push our Docker Images
+---
 
-## 3. Create the Azure Container Registry to push our Docker Images
 ```powershell
 az acr create --name "<registry-name>" --resource-group "aks-security-rg" --location "southeastasia" --sku basic
 ```
 
-## 4. Create the Azure Kubernetes Service to Run the Containers
+## 3. Create the Docker Image of the Application
+---
 
-### a). Create the Service Principle for AKS
-```powershell
-az ad sp create-for-rbac --name "sp-aks-security" --skip-assignment
-
-# this will give a json object containing the appId and the password. Make note of these 2 values
-# we need this for the next step
-```
-
-### b). Create the Azure Kubernetes Service
-```powershell
-az aks create --name "<aks-name>" --resource-group "aks-security-rg" --node-count 1 --generate-ssh-keys  --service-principal "<sp-app-id>" --client-secret "<sp-app-password>"
-```
-
-## 5. Create the Docker Image of the Application
 ```powershell
 docker build --file .\Dockerfile --tag aks-security-demo .
 ```
@@ -46,7 +32,8 @@ You can run the docker container locally and test the application. Use the follo
 docker run -p 5001:80 aks-security-demo
 ```
 
-## 6. Push Docker Image to Azure Container Registry
+## 4. Push Docker Image to Azure Container Registry
+---
 
 ### a). Tag the Docker Image with the ACS url
 ```powershell 
@@ -63,7 +50,8 @@ az acr login --name "<registry-name>"
 docker push "<your-acr-url>/aks-security-demo"
 ```
 
-## 7. Create a Deployment on AKS using a YAML File
+## 5. Create a Deployment on AKS using a YAML File
+---
 
 ### a). Update the `deploy.yml` file with the Docker Image Location
 In the `deploy.yml` file find the containers section and update the `image` property to reflect the image tag we created for ACR. It should look something like this.
@@ -101,7 +89,8 @@ kubectl get service
 kubectl get pods --watch
 ```
 
-## 8. Authenticate with ACR to Give Access for AKS to Pull Docker Images
+## 6. Authenticate with ACR to Give Access for AKS to Pull Docker Images
+---
 
 ### a). Get a referece to the ACR resource ID
 ```powershell 
