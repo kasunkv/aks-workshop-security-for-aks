@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: aks-r-pod-viewer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: aks-rb-pod-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: aks-r-pod-viewer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: "002c4572-cf5a-4bd6-86e8-1dca57e3489e"
