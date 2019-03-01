@@ -4,7 +4,7 @@ Security for AKS Hands-On Session Guidelines for AKS Workshop 2019. Make sure yo
 # Content of the Hands-On Session
 
 * [Authenticating Your AKS with ACR to Pulldown Images](https://github.com/kasunkv/aks-workshop-security-for-aks/blob/master/guidelines/authenticating-with-acr.md)
-* [Role-Based Access Control (RBAC) for AKS](https://github.com/kasunkv/aks-workshop-security-for-aks/blob/master/guidelines/rbac-for-aks.md)
+* [Creating AKS Cluster with Azure Active Directory Integration](https://github.com/kasunkv/aks-workshop-security-for-aks/blob/master/guidelines/rbac-for-aks.md)
 
 > ### Note:
 > Make sure you have read and completed the **Prerequisites** section to install and configure the tools needed to follow along in the hands-on session. The prerequisites can be found below.
