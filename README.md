@@ -67,3 +67,22 @@ After that you can tag the image for the ACR and push it to Azure
 
 # Using Azure Cloud Shell
 If anything goes wrong with your local development environment when you try to use Azure CLI or kubectl commands, you can use the Azure Cloud Shell to execute the same commands and follow along.
+
+
+# References
+
+### [Kubernetes Authentication](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+
+### [Kubernetes Authorization Overview](https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+
+### [Kubernetes Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings)
+
+### [Kubernetes API Overview](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#-strong-api-overview-strong-)
+
+### [Kubernetes Default Roles and Role Bindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#default-roles-and-role-bindings)
+
+### [Kubernetes Security Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-security)
+
+### [AKS Security and Authentication](https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal)
+
+
