@@ -8,7 +8,7 @@
 az login --use-device-code
 
 # If you want to swtich subscriptions use the following command.
-az acount set -s "<subscription-id>"
+az account set -s "<subscription-id>"
 ```
 
 ## 2. Create the Azure Container Registry to push our Docker Images
@@ -92,7 +92,7 @@ kubectl get pods --watch
 ## 6. Authenticate with ACR to Give Access for AKS to Pull Docker Images
 ---
 
-### a). Get a referece to the ACR resource ID
+### a). Get a Reference to the ACR resource ID
 ```powershell 
 # Switch to powershell
 powershell
