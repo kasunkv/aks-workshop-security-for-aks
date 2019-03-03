@@ -9,4 +9,4 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: "<aad-group-object-id>"
+  name: "f7d29434-dfca-4054-8590-2e8e13bb82e0"

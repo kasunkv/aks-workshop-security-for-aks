@@ -86,3 +86,9 @@ If anything goes wrong with your local development environment when you try to u
 ### [AKS Security and Authentication](https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal)
 
 
+# Troubleshooting
+
+## Update on the Azure AD Authentication Issue During the Demo
+The issue was caused by giving access to the wrong **AKS Azure AD Server** Applicaton from the AKS Azure AD Client application. There were 2 AKS Azure AD Server application registrations and the `server-app-id` and `server-app-secret` given when the AKS was created did not match the Application whose permission was given to the AKS Azure AD Client Application.
+
+
